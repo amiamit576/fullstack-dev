@@ -1,11 +1,12 @@
 import './App.css';
+import PlayButton from './components/PlayButton';
 import Video from './components/Video';
 import videos from './data/data'
 
 function App() {
   
    return (
-    <div className="App">
+    <div className="App" onClick={()=>console.log("hello")}>
       <div>Videos</div>
       {
         videos.map(video=><Video
@@ -16,8 +17,16 @@ function App() {
           channel={video.channel}
           verified={video.verified}
           id={video.id}
-        ></Video>)
-      }
+          
+        >
+          <PlayButton onPlay={() => console.log("play",video.title)} onPause={() => console.log("pause",video.title)}>{video.title }</PlayButton>
+        </Video>)
+       }
+       <div style={{ clear: 'both' }}>
+         {/* <PlayButton message="Play-message" onPlay={()=>console.log("play")} onPause={()=>console.log("pause")}>Play</PlayButton> */}
+         {/* <PlayButton message="pause-message" onSmash={()=>alert("pause")}>Pause</PlayButton> */}
+         
+       </div>
     
     </div>
   );
