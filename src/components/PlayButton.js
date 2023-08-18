@@ -1,13 +1,15 @@
 import React from 'react'
 import './PlayButton.css'
+import { useState } from 'react'
 
 function PlayButton({ message, children, onPlay, onPause }) {
-    let playing=false// donot use thi apporch
-    const handleClick = (e) => {
+   
+  const [playing, setPlaying] = useState(false);
+   const handleClick = (e) => {
         e.stopPropagation()
         if (playing) onPause()
         else onPlay()
-        playing = !playing;
+       setPlaying(! playing)
         
       //console.log(message) 
     }
@@ -15,5 +17,14 @@ function PlayButton({ message, children, onPlay, onPause }) {
       <button onClick={handleClick} > {children}:{playing?">":"||"}</button>
   )
 }
+// optionally we early does that
 
+ // const handleClick = (e) => {
+    //     e.stopPropagation()
+    //     if (playing) onPause()
+    //     else onPlay()
+    //     playing = !playing;
+        
+    //   //console.log(message) 
+    // }
 export default PlayButton
