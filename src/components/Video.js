@@ -1,20 +1,25 @@
 import './Video.css';
 
-function Video({ title, channel = "Coder Dost", views, time,verified,children }) {
+function Video({title,id,channel="Coder Dost",views,time,verified,children,deleteVideo,editVideo}) {
+  console.log('render Video')
+
   
   return (
       <>
       <div className='container'>
+      <button className='close' onClick={()=>deleteVideo(id)}>X</button>  
+      <button className='edit' onClick={()=>editVideo(id)}>Edit</button>  
       <div className="pic">
-      <img src="http://placeimg.com/160/90/3" alt="Katherine Johnson" />
+      <img src={`https://picsum.photos/id/${id}/160/90`} alt="Katherine Johnson" />
       </div>
-        <div className="title">{title}</div>
-      {/* short circuiting */}
+      <div className="title">{title}</div>
       <div className="channel">{channel} {verified && '✅'} </div>
       <div className="views">
         {views} views <span>.</span> {time}
-        </div>
-        <div>{children }</div>
+      </div>
+      <div>
+        {children}
+      </div>
       </div>
       </>
   );
